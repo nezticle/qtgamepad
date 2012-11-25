@@ -25,8 +25,10 @@
 QT_BEGIN_NAMESPACE
 
 QGamepadKeyBindings::QGamepadKeyBindings(QGamepadInputState *inputState)
-    : m_inputState(inputState)
+    : QObject(inputState)
+    , m_inputState(inputState)
 {
+    connect(m_inputState, SIGNAL(stateUpdated()), this, SLOT(checkMonitoredActions()));
 }
 
 void QGamepadKeyBindings::addAction(const QString &action, Qt::Key key, Qt::KeyboardModifiers modifiers)
@@ -71,6 +73,17 @@ void QGamepadKeyBindings::addAction(const QString &action, QGamepadInputState::A
     keyBinding.controllerId = controllerId;
 
     m_bindingsMap.insert(action, keyBinding);
+}
+
+void QGamepadKeyBindings::registerMonitoredAction(const QString &action)
+{
+    if(!m_monitoredActions.contains(action))
+        m_monitoredActions.insert(action, checkAction(action));
+}
+
+void QGamepadKeyBindings::deregisterMonitoredAction(const QString &action)
+{
+    m_monitoredActions.remove(action);
 }
 
 int QGamepadKeyBindings::checkAction(const QString &action)
@@ -128,6 +141,22 @@ qreal QGamepadKeyBindings::checkAxisAction(const QString &action)
 void QGamepadKeyBindings::reset()
 {
     m_bindingsMap.clear();
+    m_monitoredActions.clear();
+}
+
+void QGamepadKeyBindings::checkMonitoredActions()
+{
+    foreach (QString action, m_monitoredActions.keys()) {
+        int currentValue = checkAction(action);
+        if (currentValue != m_monitoredActions.value(action, 0)) {
+            if (currentValue)
+                emit monitoredActionActivated(action);
+            else
+                emit monitoredActionDeactivated(action);
+            //Reset stored value
+            m_monitoredActions.insert(action, currentValue);
+        }
+    }
 }
 
 QT_END_NAMESPACE

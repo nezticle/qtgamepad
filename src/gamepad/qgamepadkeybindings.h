@@ -34,8 +34,10 @@ QT_BEGIN_NAMESPACE
 
 class QGamepadInputState;
 
-class Q_GAMEPAD_EXPORT QGamepadKeyBindings
+class Q_GAMEPAD_EXPORT QGamepadKeyBindings : public QObject
 {
+    Q_OBJECT
+
     enum Type {
         Key,
         Button,
@@ -51,10 +53,20 @@ public:
     void addAction(const QString &action, QGamepadInputState::Buttons button, int controllerId = 0);
     void addAction(const QString &action, QGamepadInputState::Axis axis, int controllerId = 0);
 
+    void registerMonitoredAction(const QString &action);
+    void deregisterMonitoredAction(const QString &action);
+
     int checkAction(const QString &action);
     qreal checkAxisAction(const QString &action);
 
     void reset(); //Remove all keybindings
+
+private slots:
+    void checkMonitoredActions();
+
+signals:
+    void monitoredActionActivated(const QString &action);
+    void monitoredActionDeactivated(const QString &action);
 
 private:
 
@@ -67,6 +79,7 @@ private:
 
     QGamepadInputState *m_inputState;
     QMultiMap<QString, QGamepadKeyBindings::KeyBinding> m_bindingsMap;
+    QMap<QString, bool> m_monitoredActions;
 };
 
 QT_END_NAMESPACE
