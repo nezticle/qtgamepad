@@ -1,9 +1,7 @@
-TARGET     = QtGamepad
+TEMPLATE   = lib
+CONFIG 	   = staticlib
+TARGET     = qgamepad
 QT         = core
-
-LIBS += -ludev
-
-load(qt_module)
 
 HEADERS += \
     qtgamepadglobal.h \
@@ -12,6 +10,7 @@ HEADERS += \
     qgamepadhandler.h \
     qgamepadinputstate.h \
     qgamepadkeybindings.h
+
 SOURCES += \
     qgamepaddevicediscovery.cpp \
     qgamepadmanager.cpp \
