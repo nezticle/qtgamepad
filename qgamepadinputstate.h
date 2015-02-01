@@ -23,14 +23,14 @@
 #ifndef INPUTSTATE_H
 #define INPUTSTATE_H
 
-#include <QtCore/QPoint>
-#include <QtCore/QPointF>
-#include <QtGui/QKeyEvent>
-#include <QtGui/QMouseEvent>
-#include <QtCore/QSizeF>
-#include <QtCore/QObject>
-#include <QtGamepad/qtgamepadglobal.h>
-#include <QtGamepad/qgamepadmanager.h>
+#include <QPoint>
+#include <QPointF>
+#include <QKeyEvent>
+#include <QMouseEvent>
+#include <QSizeF>
+#include <QObject>
+#include "qtgamepadglobal.h"
+#include "qgamepadmanager.h"
 
 QT_BEGIN_HEADER
 

@@ -23,9 +23,9 @@
 #ifndef JOYSTICKHANDLER_H
 #define JOYSTICKHANDLER_H
 
-#include <QtCore/QObject>
-#include <QtCore/QMap>
-#include <QtGamepad/qtgamepadglobal.h>
+#include <QObject>
+#include <QMap>
+#include "qtgamepadglobal.h"
 
 QT_BEGIN_HEADER
 

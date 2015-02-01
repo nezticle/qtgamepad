@@ -1,7 +1,8 @@
-TEMPLATE   = lib
-CONFIG 	   = staticlib
-TARGET     = qgamepad
-QT         = core
+QT += gui
+TEMPLATE = lib
+
+CONFIG += staticlib flat
+TARGET = qgamepad
 
 HEADERS += \
     qtgamepadglobal.h \
