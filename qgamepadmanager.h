@@ -23,10 +23,10 @@
 #ifndef JOYSTICKMANAGER_H
 #define JOYSTICKMANAGER_H
 
-#include <QtCore/QObject>
-#include <QtCore/QHash>
-#include <QtGamepad/qtgamepadglobal.h>
-#include <QtGamepad/qgamepadhandler.h>
+#include <QObject>
+#include <QHash>
+#include "qtgamepadglobal.h"
+#include "qgamepadhandler.h"
 
 QT_BEGIN_HEADER
 

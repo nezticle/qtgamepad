@@ -23,8 +23,8 @@
 #ifndef KEYMAP_H
 #define KEYMAP_H
 
-#include <QtGamepad/qtgamepadglobal.h>
-#include <QtGamepad/qgamepadinputstate.h>
+#include "qtgamepadglobal.h"
+#include "qgamepadinputstate.h"
 
 #include <QtCore/QMultiMap>
 
