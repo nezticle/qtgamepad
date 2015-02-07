@@ -1,3 +1,5 @@
+[![Qt Pods](http://qt-pods.org/assets/logo.png "Qt Pods")](http://qt-pods.org)
+
 # QtGamepad
 
 Adds support for reading from Gamepad devices on Linux. Designed to be used when writing games with Qt5.
